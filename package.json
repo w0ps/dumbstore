@@ -1,0 +1,11 @@
+{
+  "name": "dumbstore",
+  "version": "1.0.0",
+  "description": "stores strings or key-value pairs on disk and in memory, get notified when new items are added",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "= <=> (=)",
+  "license": "ISC"
+}
