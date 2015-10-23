@@ -6,7 +6,7 @@ var stores = {},
 		constructors = {
 			StringStore: StringStore
 		},
-		storeDir = __dirname + '/stores';
+		storeDir = process.cwd() + '/stores';
 
 function StringStore( name, items ){
 	this.name = name;
