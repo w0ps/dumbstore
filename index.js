@@ -25,8 +25,8 @@ StringStore.prototype.add = function( str ){
 
 StringStore.prototype.save = function( cb ){
 	var items = this.items;
-console.log('items: ', JSON.stringify( { type: this.type, items: this.items }, null, 2 ));
-	//fs.writeFile(storeDir + '/' + this.name + '.json', JSON.stringify( { type: this.type, items: this.items }, null, 2 ), 'utf8', cb );
+
+	fs.writeFile(storeDir + '/' + this.name + '.json', JSON.stringify( { type: this.type, items: this.items }, null, 2 ), 'utf8', cb );
 
 	this.subscribers.forEach( sendData );
 
