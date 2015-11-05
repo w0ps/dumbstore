@@ -13,6 +13,10 @@ KeyValueStore.prototype.add = function( key, value ) {
 	this.save( console.log.bind( console, 'key-value store written' ) );
 };
 
+KeyValueStore.prototype.get = function( key ) {
+	return this.items[ key ];
+};
+
 KeyValueStore.prototype.save = shared.save;
 
 KeyValueStore.prototype.save = shared.save;
