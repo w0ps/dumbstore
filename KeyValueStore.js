@@ -3,7 +3,7 @@ var shared = require( './shared' );
 function KeyValueStore( name, items ){
 	this.name = name;
 	this.type = 'KeyValueStore';
-	this.items = {};
+	this.items = items || {};
 	this.subscribers = [];
 }
 

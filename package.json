@@ -1,6 +1,6 @@
 {
   "name": "dumbstore",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "stores strings or key-value pairs on disk and in memory, get notified when new items are added",
   "main": "index.js",
   "scripts": {
