@@ -3,10 +3,20 @@ usage:
 
 ```var dumbStores = require('dumbstore');
 
-var myStore = dumbStores.getStringStore('myStore');
+var myStringStore = dumbStores.getStore('StringStore', 'myStringStore');
 
-myStore.subscribe( console.log.bind( console, 'myStore contents:' ) );
+myStringStore.subscribe( console.log.bind( console, 'myStringStore contents:' ) );
 
-myStore.add( 'test' );
+myStringStore.add( 'foo' );
 
-//myStore contents: ['test']```
+//myStringStore contents: ['foo']
+
+var myKeyValueStore = dumbStores.getStore('KeyValueStore', 'myKeyValueStore');
+
+myKeyValueStore.subscribe( console.log.bind( console, 'myKeyValueStore contents:' ) );
+
+myKeyValueStore.add( 'foo', 'bar' );
+
+//myKeyValueStore contents: { foo: 'bar' }
+
+```

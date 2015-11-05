@@ -1,47 +1,12 @@
 var fs = require( 'fs' );
 
-
-
-var stores = {},
+var shared = require('./shared'),
+		stores = {},
 		constructors = {
-			StringStore: StringStore
+			StringStore: require('./StringStore.js'),
+			KeyValueStore: require('./KeyValueStore.js')
 		},
-		storeDir = process.cwd() + '/stores';
-
-function StringStore( name, items ){
-	this.name = name;
-	this.type = 'StringStore';
-	this.items = items || [];
-	this.subscribers = [];
-}
-
-StringStore.prototype.add = function( str ){
-	if(this.items.indexOf( str ) > -1 ) return; //not adding item twice
-
-	this.items.push( str );
-
-	this.save(console.log.bind(console, 'store written'));
-};
-
-StringStore.prototype.save = function( cb ){
-	var items = this.items;
-
-	fs.writeFile(storeDir + '/' + this.name + '.json', JSON.stringify( { type: this.type, items: this.items }, null, 2 ), 'utf8', cb );
-
-	this.subscribers.forEach( sendData );
-
-	function sendData( fun ){
-		fun( items );
-	}
-};
-
-StringStore.prototype.subscribe = function( fun ) {
-	this.subscribers.push( fun );
-};
-
-StringStore.prototype.unsubscribe = function( fun ) {
-	this.subscribers.splice( this.subscribers.indexOf( fun ) );
-};
+		storeDir = shared.storeDir;
 
 function init(){
 	var t = new Date().getTime();
@@ -68,10 +33,11 @@ function createStoreFromFile( filename ){
 	stores[storeName] = store;
 }
 
-function getStringStore( name ){
+function getStore( type, name ){
 	var store = stores[name];
-	if( !store ) store = new StringStore( name );
+	if( !store ) store = new constructors[ type ]( name );
+	stores[ name ] = store;
 	return store;
 }
 
-module.exports.getStringStore = getStringStore;
+module.exports.getStore = getStore;
