@@ -1,4 +1,5 @@
-var storeDir = process.cwd() + '/stores';
+var storeDir = process.cwd() + '/stores',
+		fs = require('fs');
 
 module.exports = {
 	storeDir: storeDir,
